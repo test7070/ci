@@ -41,39 +41,54 @@
                 q_brwCount();
                 q_gt(q_name, q_content, q_sqlCount, 1, 0, '', r_accy)
             });
+            
 			function currentData() {}
-		currentData.prototype = {
-			data : [],
-			/*新增時複製的欄位*/
-			include : ['txtCarno', 'txtInsurancenum','txtCardno','txtInsurerno','txtInsurer','txtSaleno','txtSale','txtTotal','txtMoney','txtPay','txtMemo'],
-			
-			/*記錄當前的資料*/
-			copy : function() {
-				this.data = new Array();
-				for (var i in fbbm) {
-					var isInclude = false;
-					for (var j in this.include) {
-						if (fbbm[i] == this.include[j] ) {
-							isInclude = true;
-							break;
+			currentData.prototype = {
+				data : [],
+				/*新增時複製的欄位*/
+				include : ['txtCarno', 'txtInsurancenum','txtCardno','txtInsurerno','txtInsurer','txtSaleno','txtSale','txtTotal','txtMoney','txtPay','txtMemo'],
+				
+				//bbs
+				includes : ['txtInsutypeno_', 'txtInsutype_','txtCoda_','txtCost_','txtDiscount_','txtIncome_','txtTotal_','txtPlus_','txtMemo_'],
+				
+				/*記錄當前的資料*/
+				copy : function() {
+					this.data = new Array();
+					for (var i in fbbm) {
+						var isInclude = false;
+						for (var j in this.include) {
+							if (fbbm[i] == this.include[j] ) {
+								isInclude = true;
+								break;
+							}
+						}
+						if (isInclude ) {
+							this.data.push({
+								field : fbbm[i],
+								value : $('#' + fbbm[i]).val()
+							});
 						}
 					}
-					if (isInclude ) {
-						this.data.push({
-							field : fbbm[i],
-							value : $('#' + fbbm[i]).val()
-						});
+					//bbs
+					for (var i in this.includes) {
+						for(var j = 0; j < q_bbsCount; j++) {
+							this.data.push({
+								field : this.includes[i]+j,
+								value : $('#' + this.includes[i]+j).val()
+							});
+						}
 					}
+				},
+				/*貼上資料*/
+				paste : function() {
+					for (var i in this.data) {
+                       	$('#' + this.data[i].field).val(this.data[i].value);
+                   	}
 				}
-			},
-			/*貼上資料*/
-			paste : function() {
-				for (var i in this.data) {
-                        $('#' + this.data[i].field).val(this.data[i].value);
-                    }
-			}
-		};
-		var curData = new currentData();
+			};
+			
+			var curData = new currentData();
+			
             function main() {
                 if (dataErr) {
                     dataErr = false;
@@ -150,6 +165,7 @@
                 $('#txtDatea').val(q_date());
                 $('#txtCarno').focus();
             }
+            
             function btnModi() {
                 if (emp($('#txtNoa').val()))
                     return;
