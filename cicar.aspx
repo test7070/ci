@@ -15,7 +15,8 @@
                 alert("An error occurred:\r\n" + error.Message);
             }
             var q_name = "cicar";
-            var q_readonly = ['txtWorker','txtWorker2','txtCust','txtSale','txtBirthday','txtId','txtMobile','txtTel1','txtTel2','txtFax','txtAddr1','txtAddr2'];
+            var q_readonly = ['txtWorker','txtWorker2','txtCust','txtSale','txtBirthday','txtId','txtMobile','txtTel1','txtTel2','txtFax','txtAddr1','txtAddr2'
+            							,'textInsurancenum','textCardno','textInsurer','textBdate','textEdate'];
             var bbmNum = [];
             var bbmMask = [["txtYear", "9999/99"],["txtPassdate", "999/99/99"],["txtIndate", "999/99/99"],["txtOutdate", "999/99/99"],["txtRefdate", "999/99/99"],["txtSuspdate", "999/99/99"],["txtWastedate", "999/99/99"],["txtEnddate", "999/99/99"]];
             q_sqlCount = 6;
@@ -108,6 +109,16 @@
             var changenoa=false;
             function q_gtPost(t_name) {
                 switch (t_name) {
+                	case 'ciinsui':
+                		var as = _q_appendData("ciinsui", "", true);
+                        if(as[0]!=undefined){
+                        	$("#textInsurancenum").val(as[0].insurancenum);
+                        	$("#textCardno").val(as[0].cardno);
+                        	$("#textInsurer").val(as[0].insurer);
+                        	$("#textBdate").val(as[0].bdate);
+                        	$("#textEdate").val(as[0].edate);
+                        }
+                		break;
                 	case 'cicardeal':
                 		var as = _q_appendData("cicardeal", "", true);
                         var t_item = " @ ";
@@ -224,6 +235,8 @@
 
             function refresh(recno) {
                 _refresh(recno);
+                var t_where = "where=^^carno='" + $('#txtNoa').val() + "'^^";
+                q_gt("ciinsui", t_where, 0, 0, 0, '', r_accy);
             }
 
             function readonly(t_para, empty) {
@@ -475,6 +488,22 @@
 						<td></td>
 						<td><input id="btnSale" type="button" style="width:80%;"/></td>
 					</tr>
+					<!-- 102/06/20 讀取最新保單的保單、保卡號碼、保險公司、保險起始日到期日-->
+					<tr>
+						<td><span> </span><a id='lblInsurancenum' class="lbl"> </a></td>
+						<td><input type="text" id="textInsurancenum" class="txt c1"/>	</td>
+						<td><span> </span><a id='lblCardno' class="lbl"> </a></td>
+						<td><input type="text" id="textCardno" class="txt c1"/>	</td>
+					</tr>
+					<tr>
+						<td><span> </span><a id='lblInsurer' class="lbl"> </a></td>
+						<td><input type="text" id="textInsurer" class="txt c1"/>	</td>
+						<td><span> </span><a id='lblBdate' class="lbl"> </a></td>
+						<td><input type="text" id="textBdate" class="txt c1"/>	</td>
+						<td><span> </span><a id='lblEdate' class="lbl"> </a></td>
+						<td><input type="text" id="textEdate" class="txt c1"/>	</td>
+					</tr>
+					<!-- -->
 					<tr>
 						<td><span> </span><a id='lblYear' class="lbl"> </a></td>
 						<td><input type="text" id="txtYear" class="txt c1"/>	</td>
