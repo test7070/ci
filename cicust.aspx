@@ -39,6 +39,7 @@
 
 
         function mainPost() { 
+        	$('input[type=text]').unbind('focus');
             bbmMask = [ ['txtPassdate', r_picm],['txtBirthday', r_picd]];
             q_mask(bbmMask);
 			$('#btnCicardeal').click(function(e) {

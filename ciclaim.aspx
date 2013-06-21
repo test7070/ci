@@ -47,6 +47,7 @@
             }
 
             function mainPost() {
+            	$('input[type=text]').unbind('focus');
                 q_getFormat();
                 bbmMask = [['txtDatea', r_picd],['txtHdate', r_picd],['txtEnddate', r_picd],['txtOtime', '99:99']];
                 q_mask(bbmMask);

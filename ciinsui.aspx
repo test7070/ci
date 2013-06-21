@@ -99,6 +99,7 @@
             }
 
             function mainPost() {
+            	$('input[type=text]').unbind('focus');
             	q_getFormat();
                 bbmMask = [['txtDatea', r_picd],['txtBdate', r_picd],['txtEdate', r_picd],['txtBirthday', r_picd],['txtPassdate', r_picm]];
             	q_mask(bbmMask);
@@ -290,7 +291,7 @@
             }
             .dview {
                 float: left;
-                width: 40%;
+                width: 100%;
                 border-width: 0px;
             }
             .tview {
@@ -311,7 +312,7 @@
             }
             .dbbm {
                 float: left;
-                width: 60%;
+                width: 100%;
                 /*margin: -1px;
                  border: 1px black solid;*/
                 border-radius: 5px;
@@ -446,18 +447,18 @@
 						<td class="tdZ"> </td>
 					</tr>
 					<tr>
-						<td class="td1"><span> </span><a id='lblNoa' class="lbl"> </a></td>
-						<td class="td2"><input type="text" id="txtNoa" class="txt c1"/>	</td>
-						<td class="td3"><span> </span><a id='lblDatea' class="lbl"> </a></td>
-						<td class="td4"><input type="text" id="txtDatea" class="txt c1"/>	</td>
-					</tr>
-					<tr>
 						<td class="td1"><span> </span><a id='lblCarno' class="lbl btn"> </a></td>
 						<td class="td2"><input type="text" id="txtCarno" class="txt c1"/>	</td>
-						<td class="td3"><span> </span><a id='lblInsurancenum' class="lbl"> </a></td>
-						<td class="td4"><input type="text" id="txtInsurancenum" class="txt c1"/></td>
-						<td class="td5"><span> </span><a id='lblCardno' class="lbl"> </a></td>
-						<td class="td6"><input type="text" id="txtCardno" class="txt c1"/>	</td>
+						<td class="td3"><span> </span><a id='lblNoa' class="lbl"> </a></td>
+						<td class="td4"><input type="text" id="txtNoa" class="txt c1"/>	</td>
+						<td class="td5"><span> </span><a id='lblDatea' class="lbl"> </a></td>
+						<td class="td6"><input type="text" id="txtDatea" class="txt c1"/>	</td>
+					</tr>
+					<tr>
+						<td class="td1"><span> </span><a id='lblInsurancenum' class="lbl"> </a></td>
+						<td class="td2" colspan="2"><input type="text" id="txtInsurancenum" class="txt c1"/></td>
+						<td class="td4"><span> </span><a id='lblCardno' class="lbl"> </a></td>
+						<td class="td5" colspan="2"><input type="text" id="txtCardno" class="txt c1"/>	</td>
 					</tr>
 					<tr>
 						<td class="td1"><span> </span><a id='lblInsurer' class="lbl btn"> </a></td>

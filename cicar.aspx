@@ -46,6 +46,7 @@
             }
 
             function mainPost() {
+            	$('input[type=text]').unbind('focus');
                 q_mask(bbmMask);
                 
                 //1020621車行=車主，所以車行拿掉
@@ -471,7 +472,7 @@
 					<tr>
 						<td><span> </span><a id='lblCust' class="lbl btn"> </a></td>
 						<td><input id="txtCustno"  type="text"  class="txt c1"/></td>
-						<td><input id="txtCust"  type="text"  class="txt c1"/></td>
+						<td colspan="3"><input id="txtCust"  type="text"  class="txt c1"/></td>
 						<!--<td><input id="btnCustdetail" type="button" style="width:50%;"/></td>-->
 						<td><input id="btnCust" type="button" style="width:80%;"/></td>
 					</tr>
@@ -508,9 +509,9 @@
 					<!-- 102/06/20 讀取最新保單的保單、保卡號碼、保險公司、保險起始日到期日-->
 					<tr>
 						<td><span> </span><a id='lblInsurancenum' class="lbl"> </a></td>
-						<td><input type="text" id="textInsurancenum" class="txt c1"/>	</td>
+						<td colspan="2"><input type="text" id="textInsurancenum" class="txt c1"/>	</td>
 						<td><span> </span><a id='lblCardno' class="lbl"> </a></td>
-						<td><input type="text" id="textCardno" class="txt c1"/>	</td>
+						<td colspan="2"><input type="text" id="textCardno" class="txt c1"/>	</td>
 					</tr>
 					<tr>
 						<td><span> </span><a id='lblInsurer' class="lbl"> </a></td>

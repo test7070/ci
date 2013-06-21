@@ -38,6 +38,7 @@
 
 
         function mainPost() { 
+        	$('input[type=text]').unbind('focus');
 			q_getFormat();
         	bbmMask = [];
             q_mask(bbmMask);
