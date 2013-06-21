@@ -30,37 +30,37 @@
             function q_gfPost() {
                 $('#q_report').q_report({
                     fileName : 'z_ciinsui',
-                    options : [{
+                    options : [{/*[1][2]-車牌*/
                         type : '2',
                         name : 'xcarno',
                         dbf : 'cicar',
                         index : 'a.noa,cust',
                         src : 'cicar_b.aspx'
-                    }, {
+                    }, {/*[3][4]-車主*/
                         type : '2',
                         name : 'xcust',
                         dbf : 'cicust',
                         index : 'noa,cust',
                         src : 'cicust_b.aspx'
-                    }, {
+                    }, {/*[5][6]-所屬車行*/
                         type : '2',
                         name : 'xcardealno',
                         dbf : 'cicardeal',
                         index : 'noa,cardeal',
                         src : 'cicardeal_b.aspx'
-                    }, {
+                    }, {/*[7][8]-保險公司*/
                         type : '2',
                         name : 'xinsurerno',
                         dbf : 'ciinsucomp',
                         index : 'noa,insurer',
                         src : 'ciinsucomp_b.aspx'
-                    },{
+                    },{/*[9][10]-保險起保日*/
                         type : '1',
                         name : 'bdate'
-                    },{
+                    },{/*[11][12]-保險到期日*/
                         type : '1',
                         name : 'edate'
-                    }, {
+                    }, {/*[13][14]-業務*/
                         type : '2',
                         name : 'xsales',
                         dbf : 'cisale',
