@@ -10,7 +10,7 @@
 		<script src='../script/mask.js' type="text/javascript"></script>
 		<link href="../qbox.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript">
-            this.errorHandler = null;
+            this.errorHandler = null; 
             function onPageError(error) {
                 alert("An error occurred:\r\n" + error.Message);
             }
@@ -102,15 +102,33 @@
             function q_boxClose(s2) {
                 var ret;
                 switch (b_pop) {
+                	case 'cicust':
+                		var t_where = "where=^^noa='" + $('#txtCustno').val() + "'^^";
+                		q_gt("cicust", t_where, 0, 0, 0, '', r_accy);
+                		break;
                     case q_name + '_s':
                         q_boxClose2(s2);
                         ///   q_boxClose 3/4
                         break;
                 }  
+                b_pop = '';
             }
             var changenoa=false;
             function q_gtPost(t_name) {
                 switch (t_name) {
+                	case 'cicust':
+                		var as = _q_appendData("cicust", "", true);
+                        if(as[0]!=undefined){
+                        	$("#txtBirthday").val(as[0].birthday);
+                        	$("#txtId").val(as[0].id);
+                        	$("#txtMobile").val(as[0].mobile);
+                        	$("#txtTel1").val(as[0].tel1);
+                        	$("#txtTel2").val(as[0].tel2);
+                        	$("#txtFax").val(as[0].fax);
+                        	$("#txtAddr1").val(as[0].addr1);
+                        	$("#txtAddr2").val(as[0].addr2);
+                        }
+                		break;
                 	case 'ciinsui':
                 		var as = _q_appendData("ciinsui", "", true);
                         if(as[0]!=undefined){
