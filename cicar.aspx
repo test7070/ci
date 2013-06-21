@@ -481,7 +481,7 @@
 						<td><span> </span><a id='lblAddr2' class="lbl"> </a></td>
 						<td colspan="5"><input type="text" id="txtAddr2" class="txt c1"/>	</td>
 					</tr>
-					<tr>
+					<tr> 
 						<td><span> </span><a id='lblSale' class="lbl btn"> </a></td>
 						<td><input id="txtSaleno"  type="text"  class="txt c1"/></td>
 						<td><input id="txtSale"  type="text"  class="txt c1"/></td>
