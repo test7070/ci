@@ -36,11 +36,18 @@
         t_noa = $('#txtNoa').val();  
 		t_custno = $('#txtCustno').val();
 		t_saleno = $('#txtSaleno').val();
+		t_idno = $('#txtIdno').val();
+		t_tel = $('#txtTel').val();
 		
         var t_where = " 1=1 " 
         + q_sqlPara2("a.noa", t_noa) 
         +q_sqlPara2("custno", t_custno)
         +q_sqlPara2("saleno", t_saleno);
+        
+        if(t_idno!='')
+        	t_where+="and a.noa in (select a.noa from cicar a left join cicust b on a.custno=b.noa where charindex('"+t_idno+"', b.id)>0)"
+        if(t_tel!='')
+        	t_where+="and a.noa in (select a.noa from cicar a left join cicust b on a.custno=b.noa where charindex('"+t_tel+"', b.tel1)>0 or charindex('"+t_tel+"', b.tel2)>0 )"
         
         t_where = ' where=^^' + t_where + '^^ ';
         return t_where;
@@ -70,6 +77,18 @@
 					<td style="width:65%;  ">
 					<input class="txt" id="txtSaleno" type="text" style="width:90px; font-size:medium;" />
 					<input class="txt" id="txtSale" type="text" style="width:115px; font-size:medium;" />
+					</td>
+			</tr>
+			<tr class='seek_tr'>
+					<td style="width:35%;" ><a id='lblIdno'></a></td>
+					<td style="width:65%;  ">
+					<input class="txt" id="txtIdno" type="text" style="width:215px; font-size:medium;" />
+					</td>
+			</tr>
+			<tr class='seek_tr'>
+					<td style="width:35%;" ><a id='lblTel'></a></td>
+					<td style="width:65%;  ">
+					<input class="txt" id="txtTel" type="text" style="width:215px; font-size:medium;" />
 					</td>
 			</tr>
         </table>

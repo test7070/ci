@@ -47,7 +47,9 @@
 
             function mainPost() {
                 q_mask(bbmMask);
-                q_gt('cicardeal', '', 0, 0, 0, "");
+                
+                //1020621車行=車主，所以車行拿掉
+                /*q_gt('cicardeal', '', 0, 0, 0, "");
                 
                 $(".custdetail").hide();
                 $("#btnCustdetail").val("＋");
@@ -57,7 +59,7 @@
 				}, function(e) {
 					$(".custdetail").hide();
 					$("#btnCustdetail").val("＋");
-				});
+				});*/
 				
 				$(".carnochange").hide();
 				$("#btnNoachange").toggle(function(e) {
@@ -119,7 +121,7 @@
                         	$("#textEdate").val(as[0].edate);
                         }
                 		break;
-                	case 'cicardeal':
+                	/*case 'cicardeal':
                 		var as = _q_appendData("cicardeal", "", true);
                         var t_item = " @ ";
                         for ( i = 0; i < as.length; i++) {
@@ -128,7 +130,7 @@
                         q_cmbParse("cmbCardealno", t_item);
                         if(abbm[q_recno])
                         	$("#cmbCardealno").val(abbm[q_recno].cardealno);
-                		break;
+                		break;*/
                     case q_name:
                     	if(q_cur==2){
                     		var as = _q_appendData("cicar", "", true);
@@ -408,9 +410,7 @@
                 margin: -1px;
                 font-size: medium;
             }
-			.tbbm .custdetail {
-               background-color: #FFEC8B;
-            }
+			
             .tbbm .carnochange {
                background-color: #DAA520;
             }
@@ -447,14 +447,14 @@
 					<tr>
 						<td><span> </span><a id='lblNoa' class="lbl"> </a></td>
 						<td><input id="txtNoa"  type="text" class="txt c1"/></td>
-						<td><span> </span><a id="lblCardeal" class="lbl"> </a></td>
-						<td>	<select id="cmbCardealno" class="txt c1"> </select></td>
+						<!--<td><span> </span><a id="lblCardeal" class="lbl"> </a></td>
+						<td>	<select id="cmbCardealno" class="txt c1"> </select></td>-->
 					</tr>
 					<tr>
 						<td><span> </span><a id='lblCust' class="lbl btn"> </a></td>
 						<td><input id="txtCustno"  type="text"  class="txt c1"/></td>
 						<td><input id="txtCust"  type="text"  class="txt c1"/></td>
-						<td><input id="btnCustdetail" type="button" style="width:50%;"/></td>
+						<!--<td><input id="btnCustdetail" type="button" style="width:50%;"/></td>-->
 						<td><input id="btnCust" type="button" style="width:80%;"/></td>
 					</tr>
 					<tr class="custdetail">
@@ -481,11 +481,10 @@
 						<td><span> </span><a id='lblAddr2' class="lbl"> </a></td>
 						<td colspan="5"><input type="text" id="txtAddr2" class="txt c1"/>	</td>
 					</tr>
-					<tr>
+					<tr> 
 						<td><span> </span><a id='lblSale' class="lbl btn"> </a></td>
 						<td><input id="txtSaleno"  type="text"  class="txt c1"/></td>
 						<td><input id="txtSale"  type="text"  class="txt c1"/></td>
-						<td></td>
 						<td><input id="btnSale" type="button" style="width:80%;"/></td>
 					</tr>
 					<!-- 102/06/20 讀取最新保單的保單、保卡號碼、保險公司、保險起始日到期日-->
