@@ -535,8 +535,10 @@
 						<td><input type="text" id="txtPassdate" class="txt c1"/>	</td>
 						<td><span> </span><a id='lblCc' class="lbl"> </a></td>
 						<td><input type="text" id="txtCc" class="txt c1"/>	</td>
+					</tr>
+					<tr>
 						<td><span> </span><a id='lblEngineno' class="lbl"> </a></td>
-						<td><input type="text" id="txtEngineno" class="txt c1"/>	</td>
+						<td colspan="3"><input type="text" id="txtEngineno" class="txt" style="width: 99%"/>	</td>
 					</tr>
 					<tr>
 						<td><span> </span><a id='lblIndate' class="lbl"> </a></td>
