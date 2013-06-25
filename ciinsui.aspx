@@ -18,7 +18,7 @@
             q_desc = 1;
 			q_tables = 's';
             var q_name = "ciinsui";
-            var q_readonly = ['txtDatea','txtWorker','txtWorker2','txtSale','txtInsurer','txtTotal','txtPay','txtNoa'];
+            var q_readonly = ['txtDatea','txtWorker','txtWorker2','txtSale','txtInsurer','txtTotal','txtPay','txtNoa','textTotal','textMoney','textPay'];
             var q_readonlys = [];
             var bbmNum = [['txtTotal', 15, 0, 1],['txtMoney', 15, 0, 1],['txtPay', 15, 0, 1]];
             var bbsNum = [['txtCoda', 15, 0, 1],['txtCost', 15, 0, 1],['txtDiscount', 15, 0, 1],['txtIncome', 15, 0, 1],['txtTotal', 15, 0, 1]];
@@ -232,9 +232,18 @@
 				}
 				q_tr('txtTotal',t_total);
 				q_tr('txtPay',t_pay);
+				
+				$('#textTotal').val($('#txtTotal').val());                
+                $('#textPay').val($('#txtPay').val());
             }
             function refresh(recno) {
                 _refresh(recno);
+                $('#lblTotals').text($('#lblTotal').text());
+                $('#lblPays').text($('#lblPay').text());
+                
+                $('#textTotal').val($('#txtTotal').val());
+                $('#textPay').val($('#txtPay').val());
+                
             }
             
             function readonly(t_para, empty) {
@@ -481,9 +490,8 @@
 						<td class="td2"><input type="text" id="txtBdate" class="txt c1"/>	</td>
 						<td class="td3"><span> </span><a id='lblEdate' class="lbl"> </a></td>
 						<td class="td4"><input type="text" id="txtEdate" class="txt c1"/>	</td>
-					</tr>
-					<!--1020625將合計移到表身下-->
-					<!--<tr>
+					</tr>					
+					<tr>
 						<td class="td1"><span> </span><a id='lblTotal' class="lbl"> </a></td>
 						<td class="td2"><input type="text" id="txtTotal" class="txt num c1"/>	</td>
 						<td class="td3"><span> </span><a id='lblMoney' class="lbl"> </a></td>
@@ -494,7 +502,7 @@
 					<tr>
 						<td class="td1"><span> </span><a id='lblMemo' class="lbl"> </a></td>
 						<td class="td2" colspan="5"><input type="text" id="txtMemo" class="txt c1"/>	</td>	
-					</tr>-->
+					</tr>
 					<tr>
 						<td class="td1"><span> </span><a id='lblWorker' class="lbl"> </a></td>
 						<td class="td2"><input type="text" id="txtWorker" class="txt c1"/></td>
@@ -538,19 +546,16 @@
 				</tr>
 			</table>
 		</div>
+		<!--1020625 將合計移到表身下(enter會有問題)->複製一份合計到表身下 -->
 		<div class='dbbm'>
 				<table class="tbbm"  id="tbbm" style="background:pink;'">
 					<tr>
-						<td class="td1"><span> </span><a id='lblTotal' class="lbl"> </a></td>
-						<td class="td2"><input type="text" id="txtTotal" class="txt num c1"/>	</td>
-						<td class="td3"><span> </span><a id='lblMoney' class="lbl"> </a></td>
-						<td class="td4"><input type="text" id="txtMoney" class="txt num c1"/>	</td>
-						<td class="td5"><span> </span><a id='lblPay' class="lbl"> </a></td>
-						<td class="td6"><input type="text" id="txtPay" class="txt num c1"/>	</td>
-					</tr>
-					<tr>
-						<td class="td1"><span> </span><a id='lblMemo' class="lbl"> </a></td>
-						<td class="td2" colspan="5"><input type="text" id="txtMemo" class="txt c1"/>	</td>	
+						<td class="td1"> </td>
+						<td class="td2"> </td>
+						<td class="td3"><span> </span><a id='lblTotals' class="lbl"> </a></td>
+						<td class="td4"><input type="text" id="textTotal" class="txt num c1"/>	</td>
+						<td class="td5"><span> </span><a id='lblPays' class="lbl"> </a></td>
+						<td class="td6"><input type="text" id="textPay" class="txt num c1"/>	</td>
 					</tr>
 				</table>
 			</div>
