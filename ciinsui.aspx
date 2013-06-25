@@ -185,6 +185,14 @@
             function bbsAssign() {
                 for(var i = 0; i < q_bbsCount; i++) {
                 	if (!$('#btnMinus_' + i).hasClass('isAssign')) {
+                		$('#txtCost_'+i).change(function() {
+							t_IdSeq = -1;
+							q_bodyId($(this).attr('id'));
+							b_seq = t_IdSeq;
+							if(!emp($('#txtCost_'+b_seq).val())&&!emp($('#txtDiscount_'+b_seq).val()))
+								q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0))
+		                    sum();
+                		});
                 		$('#txtDiscount_'+i).change(function() {
 							t_IdSeq = -1;
 							q_bodyId($(this).attr('id'));
@@ -474,7 +482,8 @@
 						<td class="td3"><span> </span><a id='lblEdate' class="lbl"> </a></td>
 						<td class="td4"><input type="text" id="txtEdate" class="txt c1"/>	</td>
 					</tr>
-					<tr>
+					<!--1020625將合計移到表身下-->
+					<!--<tr>
 						<td class="td1"><span> </span><a id='lblTotal' class="lbl"> </a></td>
 						<td class="td2"><input type="text" id="txtTotal" class="txt num c1"/>	</td>
 						<td class="td3"><span> </span><a id='lblMoney' class="lbl"> </a></td>
@@ -485,7 +494,7 @@
 					<tr>
 						<td class="td1"><span> </span><a id='lblMemo' class="lbl"> </a></td>
 						<td class="td2" colspan="5"><input type="text" id="txtMemo" class="txt c1"/>	</td>	
-					</tr>
+					</tr>-->
 					<tr>
 						<td class="td1"><span> </span><a id='lblWorker' class="lbl"> </a></td>
 						<td class="td2"><input type="text" id="txtWorker" class="txt c1"/></td>
@@ -529,6 +538,22 @@
 				</tr>
 			</table>
 		</div>
+		<div class='dbbm'>
+				<table class="tbbm"  id="tbbm" style="background:pink;'">
+					<tr>
+						<td class="td1"><span> </span><a id='lblTotal' class="lbl"> </a></td>
+						<td class="td2"><input type="text" id="txtTotal" class="txt num c1"/>	</td>
+						<td class="td3"><span> </span><a id='lblMoney' class="lbl"> </a></td>
+						<td class="td4"><input type="text" id="txtMoney" class="txt num c1"/>	</td>
+						<td class="td5"><span> </span><a id='lblPay' class="lbl"> </a></td>
+						<td class="td6"><input type="text" id="txtPay" class="txt num c1"/>	</td>
+					</tr>
+					<tr>
+						<td class="td1"><span> </span><a id='lblMemo' class="lbl"> </a></td>
+						<td class="td2" colspan="5"><input type="text" id="txtMemo" class="txt c1"/>	</td>	
+					</tr>
+				</table>
+			</div>
 		<input id="q_sys" type="hidden" />
 	</body>
 </html>

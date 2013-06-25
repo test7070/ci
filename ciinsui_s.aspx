@@ -29,7 +29,7 @@
         q_langShow();
 		bbmMask = [['txtBbdate', r_picd], ['txtEbdate', r_picd],['txtBedate', r_picd], ['txtEedate', r_picd]];
 		q_mask(bbmMask);
-        $('#txtNoa').focus();
+        $('#txtCarno').focus();
     }
 
     function q_seekStr() {   
@@ -73,6 +73,10 @@
                 <td><input class="txt" id="txtNoa" type="text" style="width:215px; font-size:medium;" /></td>
             </tr>
             <tr class='seek_tr'>
+                <td class='seek'  style="width:20%;"><a id='lblCarno'></a></td>
+                <td><input class="txt" id="txtCarno" type="text" style="width:215px; font-size:medium;" /></td>
+             </tr>
+            <tr class='seek_tr'>
 					<td style="width:35%;" ><a id='lblBdate'></a></td>
 					<td style="width:65%;  ">
 					<input class="txt" id="txtBbdate" type="text" style="width:90px; font-size:medium;" />
@@ -88,10 +92,6 @@
 					<input class="txt" id="txtEedate" type="text" style="width:93px; font-size:medium;" />
 					</td>
 				</tr>
-             <tr class='seek_tr'>
-                <td class='seek'  style="width:20%;"><a id='lblCarno'></a></td>
-                <td><input class="txt" id="txtCarno" type="text" style="width:215px; font-size:medium;" /></td>
-             </tr>
              <tr class='seek_tr'>
                 <td class='seek'  style="width:20%;"><a id='lblSales'></a></td>
                 <td><input class="txt" id="txtSales" type="text" style="width:215px; font-size:medium;" /></td>
