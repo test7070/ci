@@ -186,6 +186,12 @@
             function btnIns() {
                 _btnIns();
                 $('#txtNoa').focus();
+                
+                $("#textInsurancenum").val('');
+				$("#textCardno").val('');
+                $("#textInsurer").val('');
+                $("#textBdate").val('');
+                $("#textEdate").val('');
             }
 			
 			//暫存資料
