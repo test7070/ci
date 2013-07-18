@@ -138,6 +138,12 @@
                         	$("#textInsurer").val(as[0].insurer);
                         	$("#textBdate").val(as[0].bdate);
                         	$("#textEdate").val(as[0].edate);
+                        }else{
+                        	$("#textInsurancenum").val('');
+                        	$("#textCardno").val('');
+                        	$("#textInsurer").val('');
+                        	$("#textBdate").val('');
+                        	$("#textEdate").val('');
                         }
                 		break;
                 	/*case 'cicardeal':
