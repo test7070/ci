@@ -19,6 +19,7 @@
             							,'textInsurancenum','textCardno','textInsurer','textBdate','textEdate'];
             var bbmNum = [];
             var bbmMask = [["txtYear", "9999/99"],["txtPassdate", "999/99"],["txtIndate", "999/99/99"],["txtOutdate", "999/99/99"],["txtRefdate", "999/99/99"],["txtSuspdate", "999/99/99"],["txtWastedate", "999/99/99"],["txtEnddate", "999/99/99"]];
+            //吳小姐發照日期只會用到年月不會用到日
             q_sqlCount = 6;
             brwCount = 6;
             brwList = [];
