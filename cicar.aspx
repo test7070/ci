@@ -16,7 +16,7 @@
             }
             var q_name = "cicar";
             var q_readonly = ['txtWorker','txtWorker2','txtCust','txtSale','txtBirthday','txtId','txtMobile','txtTel1','txtTel2','txtFax','txtAddr1','txtAddr2'
-            							,'textInsurancenum','textCardno','textInsurer','textBdate','textEdate'];
+            							,'textInsurancenum','textCardno','textInsurer','textBdate','textEdate','textImemo'];
             var bbmNum = [];
             var bbmMask = [["txtYear", "9999/99"],["txtPassdate", "999/99"],["txtIndate", "999/99/99"],["txtOutdate", "999/99/99"],["txtRefdate", "999/99/99"],["txtSuspdate", "999/99/99"],["txtWastedate", "999/99/99"],["txtEnddate", "999/99/99"]];
             //1030718吳小姐發照日期只會用到年月不會用到日
@@ -139,12 +139,14 @@
                         	$("#textInsurer").val(as[0].insurer);
                         	$("#textBdate").val(as[0].bdate);
                         	$("#textEdate").val(as[0].edate);
+                        	$("#textImemo").val(as[0].memo);
                         }else{
                         	$("#textInsurancenum").val('');
                         	$("#textCardno").val('');
                         	$("#textInsurer").val('');
                         	$("#textBdate").val('');
                         	$("#textEdate").val('');
+                        	$("#textImemo").val('');
                         }
                 		break;
                 	/*case 'cicardeal':
@@ -520,6 +522,7 @@
 						<td><input id="btnSale" type="button" style="width:80%;"/></td>
 					</tr>
 					<!-- 102/06/20 讀取最新保單的保單、保卡號碼、保險公司、保險起始日到期日-->
+					<!-- 102/07/18 讀取最新保單的備註-->
 					<tr>
 						<td><span> </span><a id='lblInsurancenum' class="lbl"> </a></td>
 						<td colspan="2"><input type="text" id="textInsurancenum" class="txt c1"/>	</td>
@@ -533,6 +536,10 @@
 						<td><input type="text" id="textBdate" class="txt c1"/>	</td>
 						<td><span> </span><a id='lblEdate' class="lbl"> </a></td>
 						<td><input type="text" id="textEdate" class="txt c1"/>	</td>
+					</tr>
+					<tr>
+						<td><span> </span><a id='lblImemo' class="lbl"> </a></td>
+						<td colspan="5"><input type="text" id="textImemo" class="txt c1"/>	</td>
 					</tr>
 					<!-- -->
 					<tr>
