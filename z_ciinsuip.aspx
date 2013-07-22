@@ -17,7 +17,7 @@
 		<script type="text/javascript">
 			aPop = new Array(
 				['txtId', '', 'cicust', 'id,birthday,cust,tel1,addr1', '0txtId,txtBirthday,txtCust,txtTel,txtAddr', 'cicust_b.aspx'],
-	           	['txtCarno', 'lblCarno', 'cicar', 'a.noa,passdate,year,cc,engineno,brand,type', '0txtCarno,txtPassdate,txtYear,txtCc,txtEngineno,combCarbrand,combCarkind', 'cicar_b.aspx']
+	           	['txtCarno', 'lblCarno', 'cicar', 'a.noa,passdate,year,cc,engineno,brand,type', '0txtCarno,txtPassdate,txtYear,txtCc,txtEngineno,txtCarbrand,txtCarkind', 'cicar_b.aspx']
            	);
 			
 		    $(document).ready(function () {
@@ -32,27 +32,30 @@
 				$('#txtYear').mask('9999');
 				
 		        $('#btnOk').click(function () {
-		            var t_bdate = $('#txtBdate').val();
-		            var t_edate = $('#txtEdate').val();
-		            t_bdate = t_bdate.length == 0 ? '01/01' : t_bdate;
-		            t_edate = t_edate.length == 0 ? '12/31' : t_edate;
+		            var t_where = $('#txtConnum').val()+ ';' 
+		            + $('#txtId').val() + ';' + $('#txtBirthday').val() + ';' +$('#combSex').val()+ ';' +$('#combMarriage').val()+ ';' 
+		            + $('#txtCust').val() + ';' + $('#txtTel').val() + ';' +$('#txtPost').val()+ ';' +$('#txtAddr').val()+ ';' 
+		            + $('#txtBdate').val() + ';' + $('#txtEdate').val() + ';' +$('#txtMon').val()+ ';' +$('#txtCarno').val()+ ';' 
+		            + $('#txtPassdate').val() + ';' + $('#txtYear').val() + ';' +$('#combCarbrand').val()+ ';' +$('#txtTon').val()+ ';' 
+		            + $('#txtCc').val() + ';' + $('#combCarkind').val() + ';' +$('#txtEngineno').val()+ ';' +$('#txtRank').val()+ ';' 
+		            + $('#txtInsur').val();
+		            var t_para = "r_comp=" + q_getPara('sys.comp') + ",r_accy=" + r_accy + ",r_cno=" + r_cno;
 
-		            var t_detail = $('#chkDetail')[0].checked;
-		            t_detail = (t_detail ? 1 : 0);
-
-		            var t_where = r_accy + ';' + r_cno + ';' + t_bdate + ';' + t_edate + ';' + t_edate + ';' + t_detail;
-		            var t_para = "r_comp=" + q_getPara('sys.comp') + ",r_accy=" + r_accy + ",bdate=" + t_bdate + ",edate=" + t_edate + ",r_cno=" + r_cno;
-
-		            q_gtx("z_ciinsuip", t_where + ";;" + t_para + ";;z_ciinsuip;;" + q_getMsg('qTitle'));
+		            //q_gtx("z_ciinsuip", t_where + ";;" + t_para + ";;z_ciinsuip;;" + q_getMsg('qTitle'));
 		        });
 		    });
 		    function q_gfPost() {
 		        q_popAssign();
-		        q_cmbParse("combPrinttype", '三聯式,單張');
-		        q_cmbParse("combSex", '男,女,法人');
-		        q_cmbParse("combMarriage", '已婚,未婚,法人');
+		        q_cmbParse("combPrinttype", '0@三聯式,1@單張');
+		        q_cmbParse("combSex", 'A@法人,F@女,M@男');
+		        q_cmbParse("combMarriage", 'A@法人,M@已婚,S@未婚');
 		        q_gt('cicarbrand','', 0, 0, 0, "", r_accy+'_'+r_cno);
 		        q_gt('cicarkind','', 0, 0, 0, "", r_accy+'_'+r_cno);
+		        
+		        $('#txtBdate').val(q_date());
+				$('#txtEdate').val(('0'+(dec(q_date().substr(0,3))+1)).substr(-3)+q_date().substr(3,6));
+		        $('#txtMon').val(12);
+		        
 		        fbbm = q_getField('tbbm');
 		        $('#tbbm td').children("input:text").each(function () { $(this).bind('keydown', function (event) { keypress_bbm(event, $(this), fbbm, 'btnOk'); }); });
 		    }
@@ -65,7 +68,7 @@
 					 	t_brand = ""
 						var as = _q_appendData("cicarbrand","",true);
 						for ( i = 0; i < as.length; i++) {
-							t_brand = t_brand + (t_brand.length > 0 ? ',' : '') + as[i].brand + '@' + as[i].noa+' '+as[i].brand;
+							t_brand = t_brand + (t_brand.length > 0 ? ',' : '') + as[i].noa + '@' + as[i].noa+' '+as[i].brand;
 						}
 						q_cmbParse("combCarbrand", t_brand);
 						break;
@@ -73,12 +76,64 @@
 					 	t_kind = ""
 						var as = _q_appendData("cicarkind","",true);
 						for ( i = 0; i < as.length; i++) {
-							t_kind = t_kind + (t_kind.length > 0 ? ',' : '') + as[i].nick + '@' + as[i].noa+' '+ as[i].kind;
+							t_kind = t_kind + (t_kind.length > 0 ? ',' : '') + as[i].noa + '@' + as[i].noa+' '+ as[i].nick;
 						}
 						q_cmbParse("combCarkind", t_kind);
 						break;
 				}
 		    }
+		    function q_popPost(s1) {
+		    	switch (s1) {
+		    		case 'txtId':
+		    			if(!emp($('#txtId').val())){
+	                		if((/^[a-zA-Z]+$/).test($('#txtId').val().substr(0,1))){
+	                		 	if($('#txtId').val().substr(1,1)=='1'){
+	                				$('#combSex').val('M');
+	                				$('#combMarriage').val('S');
+	                			}else{
+									$('#combSex').val('F');
+	                				$('#combMarriage').val('M');
+	                			}
+	                		}else{
+	                			$('#combSex').val('A');
+	                			$('#combMarriage').val('A');
+	                		}
+	                		if((/^[\d]+$/).test($('#txtAddr').val().substr(0,3))){
+	                			$('#txtPost').val($('#txtAddr').val().substr(0,3));
+	                			$('#txtAddr').val($('#txtAddr').val().substr(3,$('#txtAddr').val().length));
+	                		}
+                		}
+			        break;
+			        case 'txtCarno':
+			        	if(!emp($('#txtCarbrand').val())){
+			        		var nofindbrand=true;
+			        		for ( i = 0; i < $('#combCarbrand')[0].length; i++) {
+			        			if($('#combCarbrand')[0][i].text.indexOf($('#txtCarbrand').val())>-1){
+			        				$('#combCarbrand').val($('#combCarbrand')[0][i].value)
+			        				nofindbrand=false;
+			        				break;
+			        			}
+			        		}
+			        		if(nofindbrand){//縮短檢查字
+			        			for ( i = 0; i < $('#combCarbrand')[0].length; i++) {
+				        			if($('#combCarbrand')[0][i].text.indexOf($('#txtCarbrand').val().substr(0,2))>-1){
+				        				$('#combCarbrand').val($('#combCarbrand')[0][i].value)
+				        				break;
+				        			}
+				        		}
+			        		}
+			        	}
+			        	if(!emp($('#txtCarkind').val())){
+			        		for ( i = 0; i < $('#combCarkind')[0].length; i++) {
+			        			if($('#combCarkind')[0][i].text.indexOf($('#txtCarkind').val().substr(0,3))>-1){
+			        				$('#combCarkind').val($('#combCarkind')[0][i].value)
+			        				break;
+			        			}
+			        		}
+			        	}
+			        break;
+		    	}
+			}
 		</script>
 		<style type="text/css">
             .tbbm {
@@ -239,7 +294,7 @@
 				</tr>
 				<tr>
 					<td class="td1"><span> </span><a id="lblCarbrand"> </a></td>
-               		<td class="td2"><select id="combCarbrand" style="width: 99%;" > </select></td>
+               		<td class="td2"><select id="combCarbrand" style="width: 99%;" > </select><input id="txtCarbrand" type="hidden"/></td>
                		<td class="td3"><span> </span><a id="lblTon"> </a></td>
                		<td class="td4"><input id="txtTon"   type="text" style='width: 75px;'/></td>
                		<td class="td5"><span> </span><a id='lblCc'> </a></td>
@@ -249,7 +304,7 @@
 				</tr>
 				<tr>
 					<td class="td1"><span> </span><a id="lblCarkind"> </a></td>
-               		<td class="td2"><select id="combCarkind" style="width: 99%;" > </select></td>
+               		<td class="td2"><select id="combCarkind" style="width: 99%;" > </select><input id="txtCarkind" type="hidden"/></td>
                		<td class="td3"><span> </span><a id="lblEngineno"> </a></td>
                		<td class="td4"  colspan="2"><input id="txtEngineno"   type="text" style='width: 99%;'/></td>
             	   	<td class="td6">
@@ -260,7 +315,7 @@
 				</tr>
 				<tr>
 					<td class="td1"><span> </span><a id="lblInsur"> </a></td>
-               		<td class="td2"><input id="txtRank"   type="text" style='width: 99%;'/></td>
+               		<td class="td2"><input id="txtInsur"   type="text" style='width: 99%;'/></td>
 				</tr>
             </table>
 			<div class="prt" style="margin-left: -40px;">
