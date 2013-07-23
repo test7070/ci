@@ -33,7 +33,7 @@
            	['txtCarno', 'lblCarno', 'cicar', 'a.noa,saleno,sale', 'txtCarno,txtSaleno,txtSale,txtInsurancenum', 'cicar_b.aspx'],
            	['txtInsurerno', 'lblInsurer', 'ciinsucomp', 'noa,insurer', 'txtInsurerno,txtInsurer', 'ciinsucomp_b.aspx'],
             ['txtSaleno', 'lblSale', 'cisale', 'noa,namea', 'txtSaleno,txtSale', 'cisale_b.aspx'],
-            ['txtInsutypeno_', 'btnInsutypeno_', 'ciinsutype', 'noa,insutype', 'txtInsutypeno_,txtInsutype_', 'ciinsutype_b.aspx']
+            ['txtInsutypeno_', 'btnInsutypeno_', 'ciinsutype', 'noa,insutype', 'txtInsutypeno_,txtInsutype_,txtCoda_', 'ciinsutype_b.aspx']
            	);
             $(document).ready(function() {
                 bbmKey = ['noa'];
