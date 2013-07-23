@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" >
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,10 +10,6 @@
 		<script src="../script/qbox.js" type="text/javascript"> </script>
 		<script src='../script/mask.js' type="text/javascript"> </script>
 		<link href="../qbox.css" rel="stylesheet" type="text/css" />
-		<link href="css/jquery/themes/redmond/jquery.ui.all.css" rel="stylesheet" type="text/css" />
-		<script src="css/jquery/ui/jquery.ui.core.js"> </script>
-		<script src="css/jquery/ui/jquery.ui.widget.js"> </script>
-		<script src="css/jquery/ui/jquery.ui.datepicker_tw.js"> </script>
 		<script type="text/javascript">
 			aPop = new Array(
 				['txtId', '', 'cicust', 'id,birthday,cust,tel1,addr1', '0txtId,txtBirthday,txtCust,txtTel,txtAddr', 'cicust_b.aspx'],
@@ -30,18 +26,38 @@
 		        $('#txtEdate').mask('999/99/99');
 				$('#txtPassdate').mask('999/99');
 				$('#txtYear').mask('9999');
-				
-		        $('#btnOk').click(function () {
-		            var t_where = $('#txtConnum').val()+ ';' 
-		            + $('#txtId').val() + ';' + $('#txtBirthday').val() + ';' +$('#combSex').val()+ ';' +$('#combMarriage').val()+ ';' 
-		            + $('#txtCust').val() + ';' + $('#txtTel').val() + ';' +$('#txtPost').val()+ ';' +$('#txtAddr').val()+ ';' 
-		            + $('#txtBdate').val() + ';' + $('#txtEdate').val() + ';' +$('#txtMon').val()+ ';' +$('#txtCarno').val()+ ';' 
-		            + $('#txtPassdate').val() + ';' + $('#txtYear').val() + ';' +$('#combCarbrand').val()+ ';' +$('#txtTon').val()+ ';' 
-		            + $('#txtCc').val() + ';' + $('#combCarkind').val() + ';' +$('#txtEngineno').val()+ ';' +$('#txtRank').val()+ ';' 
-		            + $('#txtInsur').val();
-		            var t_para = "r_comp=" + q_getPara('sys.comp') + ",r_accy=" + r_accy + ",r_cno=" + r_cno;
 
-		            //q_gtx("z_ciinsuip", t_where + ";;" + t_para + ";;z_ciinsuip;;" + q_getMsg('qTitle'));
+		        $('#btnOk').click(function () {
+		        	var t_connum=emp($('#txtConnum').val())?' ':$('#txtConnum').val();
+					var t_id=emp($('#txtId').val())?' ':$('#txtId').val();
+					var t_birthday=emp($('#txtBirthday').val())?' ':$('#txtBirthday').val();
+					var t_sex=emp($('#combSex').val())?' ':$('#combSex').val();
+					var t_marriage=emp($('#combMarriage').val())?' ':$('#combMarriage').val();
+					var t_cust=emp($('#txtCust').val())?' ':$('#txtCust').val();
+					var t_tel=emp($('#txtTel').val())?' ':$('#txtTel').val();
+					var t_post=emp($('#txtPost').val())?' ':$('#txtPost').val();
+					var t_addr=emp($('#txtAddr').val())?' ':$('#txtAddr').val();
+					var t_bdate=emp($('#txtBdate').val())?' ':$('#txtBdate').val();
+					var t_edate=emp($('#txtEdate').val())?' ':$('#txtEdate').val();
+					var t_mon=emp($('#txtMon').val())?' ':$('#txtMon').val();
+					var t_carno=emp($('#txtCarno').val())?' ':$('#txtCarno').val();
+					var t_pass=emp($('#txtPassdate').val())?' ':$('#txtPassdate').val();
+					var t_year=emp($('#txtYear').val())?' ':$('#txtYear').val();
+					var t_brand=emp($('#combCarbrand').val())?' ':$('#combCarbrand').val();
+					var t_ton=emp($('#txtTon').val())?' ':$('#txtTon').val();
+					var t_cc=emp($('#txtCc').val())?' ':$('#txtCc').val();
+					var t_kind=emp($('#combCarkind').val())?' ':$('#combCarkind').val();
+					var t_engineno=emp($('#txtEngineno').val())?' ':$('#txtEngineno').val();
+					var t_rank=emp($('#txtRank').val())?' ':$('#txtRank').val();
+					var t_insur=emp($('#txtInsur').val())?' ':$('#txtInsur').val();
+		        	
+		            var t_where = t_connum+ ';' + t_id+ ';' + t_birthday+ ';' +t_sex+ ';' +t_marriage+ ';' +t_cust+ ';' 
+		            +t_tel+ ';' +t_post+ ';' +t_addr+ ';' +t_bdate+ ';' +t_edate+ ';' +t_mon+ ';' +t_carno+ ';'+t_pass+ ';' 
+		            +t_year+ ';' +t_brand+ ';' +t_ton+ ';' +t_cc+ ';' +t_kind+ ';' +t_engineno+ ';' +t_rank+ ';' +t_insur;
+		            
+		            var t_para = "r_comp=" + q_getPara('sys.comp') + ",r_accy=" + r_accy + ",bxdate=" + $('#txtBdate').val() + ",exdate=" + $('#txtEdate').val() + ",r_cno=" + r_cno;
+
+		            q_gtx("z_ciinsuip1", t_where + ";;" + t_para + ";;z_ciinsuip;;" + q_getMsg('qTitle'));
 		        });
 		    });
 		    function q_gfPost() {
