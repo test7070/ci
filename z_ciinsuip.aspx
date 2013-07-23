@@ -56,13 +56,16 @@
 		            +t_year+ ';' +t_brand+ ';' +t_ton+ ';' +t_cc+ ';' +t_kind+ ';' +t_engineno+ ';' +t_rank+ ';' +t_insur;
 		            
 		            var t_para = "r_comp=" + q_getPara('sys.comp') + ",r_accy=" + r_accy + ",bxdate=" + $('#txtBdate').val() + ",exdate=" + $('#txtEdate').val() + ",r_cno=" + r_cno;
-
-		            q_gtx("z_ciinsuip1", t_where + ";;" + t_para + ";;z_ciinsuip;;" + q_getMsg('qTitle'));
+					
+					if($('#combPrinttype').val()=='0')
+		            	q_gtx("z_ciinsuip1", t_where + ";;" + t_para + ";;z_ciinsuip;;" + q_getMsg('qTitle'));
+		            if($('#combPrinttype').val()=='1')
+		            	q_gtx("z_ciinsuip2", t_where + ";;" + t_para + ";;z_ciinsuip;;" + q_getMsg('qTitle'));
 		        });
 		    });
 		    function q_gfPost() {
 		        q_popAssign();
-		        q_cmbParse("combPrinttype", '0@三聯式,1@單張');
+		        q_cmbParse("combPrinttype", '0@點陣,1@噴墨');
 		        q_cmbParse("combSex", 'A@法人,F@女,M@男');
 		        q_cmbParse("combMarriage", 'A@法人,M@已婚,S@未婚');
 		        q_gt('cicarbrand','', 0, 0, 0, "", r_accy+'_'+r_cno);
