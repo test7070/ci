@@ -321,8 +321,10 @@
             <tr class="tr1">
                <td class="td1"><span> </span><a id="lblNoa" class="lbl"></a></td>
                <td class="td2"><input id="txtNoa" type="text" class="txt c1"/></td>
-               <td class="td3"><span> </span><a id="lblCust" class="lbl"></a></td>
-               <td class="td4"><input id="txtCust" type="text" class="txt c1"/></td>
+            </tr>
+            <tr class="tr1">
+               <td class="td1"><span> </span><a id="lblCust" class="lbl"></a></td>
+               <td class="td2" colspan="3"><input id="txtCust" type="text" class="txt c1"/></td>
             </tr>
             <tr class="tr2">
                <td class="td1"><span> </span><a id="lblBirthday" class="lbl"></a></td>
