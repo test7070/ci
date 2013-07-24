@@ -19,6 +19,7 @@
 						 ['txtXcardealno', '', 'cicardeal', 'noa,comp', 'txtXcardealno', 'cardeal_b.aspx'],
 						 ['txtXinsurerno', '', 'ciinsucomp', 'noa,insurer', 'txtXinsurerno', 'ciinsucomp_b.aspx'],
 						  ['txtXsales', '', 'cisale', 'noa,namea', 'txtXsales', 'cisale_b.aspx']
+						  ['txtXtel', '', 'cicust', 'tel1', 'txtXtel', '']
 		);
             if (location.href.indexOf('?') < 0) {
                 location.href = location.href + "?;;;;"+((new Date()).getUTCFullYear()-1911);
@@ -66,6 +67,9 @@
                         dbf : 'cisale',
                         index : 'noa,namea',
                         src : 'cisale_b.aspx'
+                    }, {/*[15]-電話*/
+                        type : '6',
+                        name : 'xtel'
                     }]
                 });
                 q_langShow();
