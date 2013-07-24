@@ -101,7 +101,7 @@
             function mainPost() {
             	$('input[type=text]').unbind('focus');
             	q_getFormat();
-                bbmMask = [['txtDatea', r_picd],['txtBdate', r_picd],['txtEdate', r_picd],['txtBirthday', r_picd],['txtPassdate', r_picm]];
+                bbmMask = [['txtDatea', r_picd],['txtBdate', r_picd],['txtEdate', r_picd],['txtBirthday', r_picd],['txtPassdate', r_picm],['txtIndate', r_picd]];
             	q_mask(bbmMask);
             	
             }
@@ -498,6 +498,12 @@
 						<td class="td4"><input type="text" id="txtMoney" class="txt num c1"/>	</td>
 						<td class="td5"><span> </span><a id='lblPay' class="lbl"> </a></td>
 						<td class="td6"><input type="text" id="txtPay" class="txt num c1"/>	</td>
+					</tr>
+					<tr>
+						<td class="td1"><span> </span><a id='lblGqbno' class="lbl"> </a></td>
+						<td class="td2"><input type="text" id="txtGqbno" class="txt c1"/>	</td>
+						<td class="td3"><span> </span><a id='lblIndate' class="lbl"> </a></td>
+						<td class="td4"><input type="text" id="txtIndate" class="txt c1"/>	</td>
 					</tr>
 					<tr>
 						<td class="td1"><span> </span><a id='lblMemo' class="lbl"> </a></td>

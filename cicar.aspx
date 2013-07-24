@@ -555,6 +555,8 @@
 						<td><input type="text" id="txtPassdate" class="txt c1"/>	</td>
 						<td><span> </span><a id='lblCc' class="lbl"> </a></td>
 						<td><input type="text" id="txtCc" class="txt c1"/>	</td>
+						<td><span> </span><a id='lblTon' class="lbl"> </a></td>
+						<td><input type="text" id="txtTon" class="txt c1"/>	</td>
 					</tr>
 					<tr>
 						<td><span> </span><a id='lblEngineno' class="lbl"> </a></td>
