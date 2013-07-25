@@ -19,7 +19,7 @@
 						 ['txtXcardealno', '', 'cicardeal', 'noa,comp', 'txtXcardealno', 'cardeal_b.aspx'],
 						 ['txtXinsurerno', '', 'ciinsucomp', 'noa,insurer', 'txtXinsurerno', 'ciinsucomp_b.aspx'],
 						  ['txtXsales', '', 'cisale', 'noa,namea', 'txtXsales', 'cisale_b.aspx'],
-						  ['txtXtel', '', 'cicust', 'tel1', 'txtXtel', '']
+						  ['txtXtel', '', 'cicust', 'tel1,cust', 'txtXtel', '']
 		);
             if (location.href.indexOf('?') < 0) {
                 location.href = location.href + "?;;;;"+((new Date()).getUTCFullYear()-1911);
