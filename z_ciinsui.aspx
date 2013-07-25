@@ -18,7 +18,7 @@
 		aPop = new Array(['txtXcarno', '', 'cicar', 'a.noa,cust', 'txtXcarno', 'cicar_b.aspx'],
 						 ['txtXcardealno', '', 'cicardeal', 'noa,comp', 'txtXcardealno', 'cardeal_b.aspx'],
 						 ['txtXinsurerno', '', 'ciinsucomp', 'noa,insurer', 'txtXinsurerno', 'ciinsucomp_b.aspx'],
-						  ['txtXsales', '', 'cisale', 'noa,namea', 'txtXsales', 'cisale_b.aspx']
+						  ['txtXsales', '', 'cisale', 'noa,namea', 'txtXsales', 'cisale_b.aspx'],
 						  ['txtXtel', '', 'cicust', 'tel1', 'txtXtel', '']
 		);
             if (location.href.indexOf('?') < 0) {
