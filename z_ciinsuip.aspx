@@ -13,7 +13,7 @@
 		<script type="text/javascript">
 			aPop = new Array(
 				['txtId', '', 'cicust', 'id,birthday,cust,tel1,addr1', '0txtId,txtBirthday,txtCust,txtTel,txtAddr', 'cicust_b.aspx'],
-	           	['txtCarno', 'lblCarno', 'cicar', 'a.noa,passdate,year,cc,engineno,brand,type', '0txtCarno,txtPassdate,txtYear,txtCc,txtEngineno,txtCarbrand,txtCarkind', 'cicar_b.aspx']
+	           	['txtCarno', 'lblCarno', 'cicar', 'a.noa,passdate,year,cc,engineno,ton,brand,type', '0txtCarno,txtPassdate,txtYear,txtCc,txtEngineno,txtTon,txtCarbrand,txtCarkind', 'cicar_b.aspx']
            	);
 			
 		    $(document).ready(function () {
