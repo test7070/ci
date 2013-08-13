@@ -104,6 +104,11 @@
                 bbmMask = [['txtDatea', r_picd],['txtBdate', r_picd],['txtEdate', r_picd],['txtBirthday', r_picd],['txtPassdate', r_picm],['txtIndate', r_picd]];
             	q_mask(bbmMask);
             	
+            	$('#txtInsurerno').change(function() {
+            		t_where="where=^^ noa='"+$('#txtInsurerno').val()+"'^^";
+                	q_gt('ciinsucomp', t_where, 0, 0, 0, "", r_accy);
+                	compchange=true;
+				});
             }
 
             function q_boxClose(s2) {
@@ -115,9 +120,27 @@
                 }
                 b_pop = '';
             }
-
+			
+			var cicomp;
+			var compchange=false;
             function q_gtPost(t_name) {
                  switch (t_name) {
+                 	case 'ciinsucomp':
+                 		cicomp=_q_appendData("ciinsucomp", "", true);
+                 		
+                 		if(compchange&&cicomp[0]!=undefined){
+	                 		for(var i = 0; i < q_bbsCount; i++) {
+		                		if(dec($('#txtIncome_'+i).val())!=0&&!emp($('#txtInsutype_'+i).val())&&cicomp[0]!=undefined){
+									if($('#txtInsutype_'+i).val().substr(0,2)=='強制')
+										q_tr('txtTotal_'+i,dec(cicomp[0].forcediscount));
+									else
+										q_tr('txtTotal_'+i,round(dec($('#txtIncome_'+i).val())*dec(cicomp[0].arbdiscount)/100,0));
+								}
+		                	}
+		                	sum();
+                 		}
+                 		compchange=false;
+                 		break;
                     case q_name:
                         if (q_cur == 4)
                             q_Seek_gtPost();
@@ -165,6 +188,8 @@
                 $('#txtNoa').val('AUTO');
                 $('#txtDatea').val(q_date());
                 $('#txtCarno').focus();
+                 t_where="where=^^ noa='"+$('#txtInsurerno').val()+"'^^";
+                q_gt('ciinsucomp', t_where, 0, 0, 0, "", r_accy);
             }
             
             function btnModi() {
@@ -172,6 +197,8 @@
                     return;
                 _btnModi();
                 $('#txtCarno').focus();
+                t_where="where=^^ noa='"+$('#txtInsurerno').val()+"'^^";
+                q_gt('ciinsucomp', t_where, 0, 0, 0, "", r_accy);
             }
             function btnPrint() {
             	q_box('z_ciinsui.aspx'+ "?;;;;" + ";noa="+ $('#txtNoa').val(), '', "90%", "600px", q_getMsg("popPrint"));
@@ -191,6 +218,12 @@
 							b_seq = t_IdSeq;
 							if(!emp($('#txtCost_'+b_seq).val())&&!emp($('#txtDiscount_'+b_seq).val()))
 								q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0))
+							if(dec($('#txtIncome_'+b_seq).val())!=0&&!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
+								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
+									q_tr('txtTotal_'+b_seq,dec(cicomp[0].forcediscount));
+								else
+									q_tr('txtTotal_'+b_seq,round(dec($('#txtIncome_'+b_seq).val())*dec(cicomp[0].arbdiscount)/100,0));
+							}
 		                    sum();
                 		});
                 		$('#txtDiscount_'+i).change(function() {
@@ -199,9 +232,26 @@
 							b_seq = t_IdSeq;
 							if(!emp($('#txtCost_'+b_seq).val())&&!emp($('#txtDiscount_'+b_seq).val()))
 								q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0))
+								
+							if(dec($('#txtIncome_'+b_seq).val())!=0&&!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
+								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
+									q_tr('txtTotal_'+b_seq,dec(cicomp[0].forcediscount));
+								else
+									q_tr('txtTotal_'+b_seq,round(dec($('#txtIncome_'+b_seq).val())*dec(cicomp[0].arbdiscount)/100,0));
+							}
+							
 		                    sum();
                 		});
                 		$('#txtIncome_'+i).change(function() {
+                			t_IdSeq = -1;
+							q_bodyId($(this).attr('id'));
+							b_seq = t_IdSeq;
+                			if(dec($('#txtIncome_'+b_seq).val())!=0&&!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
+								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
+									q_tr('txtTotal_'+b_seq,dec(cicomp[0].forcediscount));
+								else
+									q_tr('txtTotal_'+b_seq,round(dec($('#txtIncome_'+b_seq).val())*dec(cicomp[0].arbdiscount)/100,0));
+							}
 		                    sum();
                 		});
                 		$('#txtTotal_'+i).change(function() {
