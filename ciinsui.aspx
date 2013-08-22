@@ -21,7 +21,7 @@
             var q_readonly = ['txtDatea','txtWorker','txtWorker2','txtSale','txtInsurer','txtTotal','txtPay','txtNoa','textTotal','textMoney','textPay'];
             var q_readonlys = [];
             var bbmNum = [['txtTotal', 15, 0, 1],['txtMoney', 15, 0, 1],['txtPay', 15, 0, 1]];
-            var bbsNum = [['txtCoda', 15, 0, 1],['txtCost', 15, 0, 1],['txtDiscount', 15, 0, 1],['txtIncome', 15, 0, 1],['txtTotal', 15, 0, 1]];
+            var bbsNum = [['txtCoda', 15, 0, 1],['txtCost', 15, 0, 1],['txtIncome', 15, 0, 1],['txtTotal', 15, 0, 1]];
             var bbmMask = [];
             var bbsMask = [];
             q_sqlCount = 6;
@@ -120,7 +120,15 @@
                 }
                 b_pop = '';
             }
-			
+			function q_popPost(s1) {
+				switch (s1) {
+					case 'txtInsutypeno_':
+	            		t_where="where=^^ noa='"+$('#txtInsurerno').val()+"'^^";
+	                	compchange=true;
+	                	q_gt('ciinsucomp', t_where, 0, 0, 0, "", r_accy);
+						break;
+				}
+			}
 			var cicomp;
 			var compchange=false;
             function q_gtPost(t_name) {
@@ -130,10 +138,13 @@
                  		if(compchange&&cicomp[0]!=undefined){
 	                 		for(var i = 0; i < q_bbsCount; i++) {
 		                		if(!emp($('#txtInsutype_'+i).val())&&cicomp[0]!=undefined){
-									if($('#txtInsutype_'+i).val().substr(0,2)=='強制')
-										q_tr('txtIncome_'+i,dec(cicomp[0].forcediscount));
-									else
-										q_tr('txtIncome_'+i,round(dec($('#txtCost_'+i).val())*dec(cicomp[0].arbdiscount)/100,0));
+									if($('#txtInsutype_'+i).val().substr(0,2)=='強制'){
+										q_tr('txtDiscount_'+i,dec(cicomp[0].forcediscount));
+										q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
+									}else{
+										q_tr('txtDiscount_'+i,dec(cicomp[0].arbdiscount));
+										q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0));
+									}
 								}
 		                	}
 		                	sum();
@@ -217,21 +228,9 @@
 							b_seq = t_IdSeq;
                 			if(!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
 								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
-									q_tr('txtIncome_'+b_seq,dec(cicomp[0].forcediscount));
+									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
-									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec(cicomp[0].arbdiscount)/100,0));
-							}
-		                    sum();
-                		});
-                		$('#txtDiscount_'+i).change(function() {
-							t_IdSeq = -1;
-							q_bodyId($(this).attr('id'));
-							b_seq = t_IdSeq;
-                			if(!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
-								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
-									q_tr('txtIncome_'+b_seq,dec(cicomp[0].forcediscount));
-								else
-									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec(cicomp[0].arbdiscount)/100,0));
+									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0));
 							}
 		                    sum();
                 		});
@@ -241,9 +240,21 @@
 							b_seq = t_IdSeq;
                 			if(!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
 								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
-									q_tr('txtIncome_'+b_seq,dec(cicomp[0].forcediscount));
+									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
-									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec(cicomp[0].arbdiscount)/100,0));
+									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0));
+							}
+		                    sum();
+                		});
+                		$('#txtDiscount_'+i).change(function(){
+                			t_IdSeq = -1;
+							q_bodyId($(this).attr('id'));
+							b_seq = t_IdSeq;
+                			if(!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
+								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
+									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
+								else
+									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0));
 							}
 		                    sum();
                 		});
@@ -266,10 +277,13 @@
             }
 
             function sum() {
-            	var t_total = 0,t_pay=0;
+            	var t_total = 0,t_pay=0,t_cost=0,t_income=0;
                 for(var j = 0; j < q_bbsCount; j++) {
                 	if(!emp($('#txtInsutypeno_'+j).val())){
-                		t_total+=dec($('#txtIncome_'+j).val());
+                		t_income = dec($('#txtIncome_'+j).val());
+                		t_cost = dec($('#txtCost_'+j).val());
+                		$('#txtTotal_'+j).val(t_cost-t_income);
+                		t_total+=t_income;
                 		t_pay+=dec($('#txtTotal_'+j).val());
                 	}
 				}
