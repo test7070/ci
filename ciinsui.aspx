@@ -21,7 +21,7 @@
             var q_readonly = ['txtDatea','txtWorker','txtWorker2','txtSale','txtInsurer','txtTotal','txtPay','txtNoa','textTotal','textMoney','textPay'];
             var q_readonlys = [];
             var bbmNum = [['txtTotal', 15, 0, 1],['txtMoney', 15, 0, 1],['txtPay', 15, 0, 1]];
-            var bbsNum = [['txtCoda', 15, 0, 1],['txtCost', 15, 0, 1],['txtIncome', 15, 0, 1],['txtTotal', 15, 0, 1]];
+            var bbsNum = [['txtCoda', 15, 0, 1],['txtCost', 15, 0, 1],['txtIncome', 15, 0, 1],['txtDiscount', 10, 4, 1],['txtTotal', 15, 0, 1]];
             var bbmMask = [];
             var bbsMask = [];
             q_sqlCount = 6;
@@ -247,6 +247,7 @@
 		                    sum();
                 		});
                 		$('#txtDiscount_'+i).change(function(){
+                			$(this).val((dec($(this).val())));
                 			t_IdSeq = -1;
 							q_bodyId($(this).attr('id'));
 							b_seq = t_IdSeq;
@@ -292,6 +293,9 @@
 				
 				$('#textTotal').val($('#txtTotal').val());                
                 $('#textPay').val($('#txtPay').val());
+                for(var i = 0;i < q_bbsCount;i++){
+					$('#txtDiscount_'+i).val((dec($('#txtDiscount_'+i).val())));
+				}
             }
             function refresh(recno) {
                 _refresh(recno);
@@ -300,7 +304,9 @@
                 
                 $('#textTotal').val($('#txtTotal').val());
                 $('#textPay').val($('#txtPay').val());
-                
+                for(var i = 0;i < q_bbsCount;i++){
+					$('#txtDiscount_'+i).val((dec($('#txtDiscount_'+i).val())));
+				}
             }
             
             function readonly(t_para, empty) {
