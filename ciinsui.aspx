@@ -18,7 +18,7 @@
 			q_desc = 1;
 			q_tables = 's';
 			var q_name = "ciinsui";
-			var q_readonly = ['txtDatea','txtWorker','txtWorker2','txtSale','txtInsurer','txtTotal','txtPay','txtNoa','textTotal','textMoney','textPay'];
+			var q_readonly = ['txtDatea','txtWorker','txtWorker2','txtSale','txtInsurer','txtTotal','txtPay','txtMoney','txtNoa','textTotal','textMoney','textPay','textMoney'];
 			var q_readonlys = [];
 			var bbmNum = [['txtTotal', 15, 0, 1],['txtMoney', 15, 0, 1],['txtPay', 15, 0, 1]];
 			var bbsNum = [['txtCoda', 15, 0, 1],['txtCost', 15, 0, 1],['txtIncome', 15, 0, 1],['txtDiscount', 10, 4, 1],['txtTotal', 15, 0, 1]];
@@ -145,8 +145,8 @@
 									}
 								}
 							}
-							sum();
 				 		}
+						sum();
 				 		compchange=false;
 				 		break;
 					case q_name:
@@ -196,7 +196,7 @@
 				$('#txtNoa').val('AUTO');
 				$('#txtDatea').val(q_date());
 				$('#txtCarno').focus();
-				 t_where="where=^^ noa='"+$('#txtInsurerno').val()+"'^^";
+				t_where="where=^^ noa='"+$('#txtInsurerno').val()+"'^^";
 				q_gt('ciinsucomp', t_where, 0, 0, 0, "", r_accy);
 			}
 			
@@ -269,13 +269,13 @@
 				if (!as['insutypeno']) {
 					as[bbsKey[1]] = '';
 					return;
-	}
+				}
 				q_nowf();
 				return true;
 			}
 
 			function sum() {
-				var t_total = 0,t_pay=0,t_cost=0,t_income=0;
+				var t_total = 0,t_pay=0,t_cost=0,t_income=0,t_money=0;
 				for(var j = 0; j < q_bbsCount; j++) {
 					if(!emp($('#txtInsutypeno_'+j).val())){
 						t_income = dec($('#txtIncome_'+j).val());
@@ -283,13 +283,16 @@
 						$('#txtTotal_'+j).val(t_cost-t_income);
 						t_total+=t_income;
 						t_pay+=dec($('#txtTotal_'+j).val());
+						t_money+=dec($('#txtCost_'+j).val());
 					}
 				}
 				q_tr('txtTotal',t_total);
 				q_tr('txtPay',t_pay);
+				q_tr('txtMoney',t_money);
 				
 				$('#textTotal').val($('#txtTotal').val());				
 				$('#textPay').val($('#txtPay').val());
+				$('#textMoney').val($('#txtMoney').val());
 				for(var i = 0;i < q_bbsCount;i++){
 					$('#txtDiscount_'+i).val((dec($('#txtDiscount_'+i).val())));
 				}
@@ -299,9 +302,11 @@
 				_refresh(recno);
 				$('#lblTotals').text($('#lblTotal').text());
 				$('#lblPays').text($('#lblPay').text());
+				$('#lblMoneys').text($('#lblMoney').text());
 				
 				$('#textTotal').val($('#txtTotal').val());
 				$('#textPay').val($('#txtPay').val());
+				$('#textMoney').val($('#txtMoney').val());
 				for(var i = 0;i < q_bbsCount;i++){
 					$('#txtDiscount_'+i).val((dec($('#txtDiscount_'+i).val())));
 				}
@@ -617,8 +622,8 @@
 		<div class='dbbm'>
 				<table class="tbbm"  id="tbbm" style="background:pink;'">
 					<tr>
-						<td class="td1"> </td>
-						<td class="td2"> </td>
+						<td class="td1"><span> </span><a id='lblMoneys' class="lbl"> </a></td>
+						<td class="td2"><input type="text" id="textMoney" class="txt num c1"/>	</td>
 						<td class="td3"><span> </span><a id='lblTotals' class="lbl"> </a></td>
 						<td class="td4"><input type="text" id="textTotal" class="txt num c1"/>	</td>
 						<td class="td5"><span> </span><a id='lblPays' class="lbl"> </a></td>
