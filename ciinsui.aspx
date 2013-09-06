@@ -46,7 +46,8 @@
 			currentData.prototype = {
 				data : [],
 				/*新增時複製的欄位*/
-				include : ['txtCarno', 'txtInsurancenum','txtCardno','txtInsurerno','txtInsurer','txtSaleno','txtSale','txtTotal','txtMoney','txtPay','txtMemo'],
+				//20130906 吳小姐新增時不要複製保單號碼和保卡號碼
+				include : ['txtCarno', 'txtInsurerno','txtInsurer','txtSaleno','txtSale','txtTotal','txtMoney','txtPay','txtMemo'],
 				
 				//bbs
 				includes : ['txtInsutypeno_', 'txtInsutype_','txtCoda_','txtCost_','txtDiscount_','txtIncome_','txtTotal_','txtPlus_','txtMemo_'],
