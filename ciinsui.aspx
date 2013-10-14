@@ -142,7 +142,7 @@
 										q_tr('txtIncome_'+i,dec($('#txtDiscount_'+i).val()));
 									}else{
 										q_tr('txtDiscount_'+i,dec(cicomp[0].arbdiscount));
-										q_tr('txtIncome_'+i,round(dec($('#txtCost_'+i).val())*dec($('#txtDiscount_'+i).val())/100,0));
+										q_tr('txtIncome_'+i,Math.round(dec($('#txtCost_'+i).val())*dec($('#txtDiscount_'+i).val())/100));
 									}
 								}
 							}
@@ -229,7 +229,7 @@
 								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
 									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
-									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0));
+									q_tr('txtIncome_'+b_seq,Math.round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100));
 							}
 							sum();
 						});
@@ -241,7 +241,7 @@
 								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
 									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
-									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0));
+									q_tr('txtIncome_'+b_seq,Math.round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100));
 							}
 							sum();
 						});
@@ -254,7 +254,7 @@
 								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
 									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
-									q_tr('txtIncome_'+b_seq,round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100,0));
+									q_tr('txtIncome_'+b_seq,Math.round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100));
 							}
 							sum();
 						});
