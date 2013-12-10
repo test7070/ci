@@ -1,0 +1,5 @@
+changecust:--changecust
+
+update cicar set custno=[2] where custno=[1]
+update cicust set noa=[2] where noa=[1]
+;

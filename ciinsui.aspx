@@ -191,9 +191,17 @@
 			}
 		   
 			function btnIns() {
-				curData.copy();
+				var t_bbscounts=q_bbsCount;
+				if($('#Copy').is(':checked')){
+					curData.copy();
+				}
 				_btnIns();
-				curData.paste();
+				if($('#Copy').is(':checked')){
+					while(t_bbscounts>=q_bbsCount){
+						q_bbs_addrow('bbs',0,0);
+					}
+					curData.paste();
+				}
 				$('#txtNoa').val('AUTO');
 				$('#txtDatea').val(q_date());
 				$('#txtCarno').focus();
@@ -581,6 +589,8 @@
 						<td class="td2"><input type="text" id="txtWorker" class="txt c1"/></td>
 						<td class="td1"><span> </span><a id='lblWorker2' class="lbl"> </a></td>
 						<td class="td2"><input type="text" id="txtWorker2" class="txt c1"/></td>	
+						<td class="td2"><input id="Copy" type="checkbox" />
+						<span> </span><a id="lblCopy"></a></td>	
 					</tr>
 				</table>
 			</div>

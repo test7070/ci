@@ -44,10 +44,20 @@
             q_mask(bbmMask);
 			$('#btnCicardeal').click(function(e) {
 					q_box("cicardeal.aspx?;;;cno='" + $('#txtCardealno').val() + "'", 'cicardeal', "90%", "95%", q_getMsg("popCicardeal"));
-				});
+			});
 			$('#btnCicar').click(function (e) {
 		            q_box("cicar_b.aspx?;;;carno='" + $('#txtCarno').val() + "'", 'cicar', "95%", "95%", q_getMsg("popCicar"));
-		        });
+		    });
+		    
+		    $('#btnChange').click(function() {
+		    	if(!emp($('#textNowcustno').val())){
+		    		if(confirm("確定要更換客戶編號?"))
+					{
+		    			q_func('qtxt.query','changecust.txt,changecust,'+encodeURI($('#txtNoa').val()) + ';' + encodeURI($('#textNowcustno').val()));
+		    		}
+		    	}
+			});
+			
         }
         function txtCopy(dest, source) {
             
@@ -134,6 +144,8 @@
 
         function readonly(t_para, empty) {
             _readonly(t_para, empty);
+            
+            $('#textNowcustno').removeAttr('readonly').css('background','white');
         }
 
         function btnMinus(id) {
@@ -183,6 +195,11 @@
         function btnCancel() {
             _btnCancel();
         }
+        
+        function q_funcPost(t_func, result) {
+        	alert("更換完成!!");
+        	location.href=location.href;
+		}
     </script>
     <style type="text/css">
          #dmain {
@@ -361,6 +378,12 @@
                <td class="td2"><input id="txtWorker" type="text" class="txt c1"/></td>
                <td class="td1"><span> </span><a id="lblWorker2" class="lbl"></a></td>
                <td class="td2"><input id="txtWorker2" type="text" class="txt c1"/></td>
+            </tr>
+            <tr class="tr9" style="background: #FFAA33;">
+               <td class="td1"><span> </span><a id="lblNowcustno" class="lbl"></a></td>
+               <td class="td2"><input id="textNowcustno" type="text" class="txt c1"/></td>
+               <td class="td1"><input id="btnChange" type="button" /></td>
+               <td class="td1"></td>
             </tr>
         </table>
         </div>
