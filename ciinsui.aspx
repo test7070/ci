@@ -201,6 +201,11 @@
 						q_bbs_addrow('bbs',0,0);
 					}
 					curData.paste();
+				}else{
+					//預設先出現10筆
+					while(10>q_bbsCount){
+						q_bbs_addrow('bbs',0,0);
+					}
 				}
 				$('#txtNoa').val('AUTO');
 				$('#txtDatea').val(q_date());
