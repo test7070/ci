@@ -1,0 +1,82 @@
+﻿cichange:----------------cichange
+declare @event nvarchar(20)--判斷處理事件
+set @event=[1]
+declare @oldcarno nvarchar(20)--舊車牌
+set @oldcarno=[2]
+declare @nowcarno nvarchar(20)--新車牌
+set @nowcarno=[3]
+declare @oldcustno nvarchar(20)--舊客戶編號
+set @oldcustno=[4]
+declare @oldcust nvarchar(50)--舊客戶名稱
+set @oldcust=[5]
+declare @eventdate nvarchar(10)--事件日期
+set @eventdate=[6]
+declare @worker nvarchar(50)--處理人員
+set @worker=[7]
+
+declare @now_date nvarchar(10)--現在日期
+set @now_date=CONVERT (VARCHAR(7), GETDATE(),12 )+0890000
+set @now_date=left(@now_date,3)+'/'+substring(@now_date,4,2)+'/'+right(@now_date,2)
+
+if(@event='noa')
+begin
+	BEGIN TRY
+		--更新車籍資料
+		update cicar
+		set noa=@nowcarno
+		where noa=@oldcarno
+	
+		--更新/新增車輛異動紀錄
+		update cichange
+		set noa=@nowcarno
+		where noa=@oldcarno
+	
+		INSERT INTO cichange([noa],[noq],[oldnoa],[datea],[worker])
+		VALUES(@nowcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@nowcarno),0))as int)+1)as nvarchar(10)),3)),@oldcarno,@now_date,@worker)
+	END TRY
+	BEGIN CATCH
+		INSERT INTO cichange([noa],[noq],[oldnoa],[datea],[worker])
+		VALUES(@oldcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@oldcarno),0))as int)+1)as nvarchar(10)),3)),@oldcarno,@now_date,@worker+'車牌更新失敗')
+	END CATCH
+end
+
+if(@event='cust')
+begin
+	--新增車輛異動紀錄
+	INSERT INTO cichange([noa],[noq],[oldcustno],[oldcust],[datea],[worker])
+	VALUES(@oldcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@oldcarno),0))as int)+1)as nvarchar(10)),3)),@oldcustno,@oldcust,@now_date,@worker)
+
+end
+
+if(@event='refdate')
+begin
+	--新增車輛異動紀錄
+	INSERT INTO cichange([noa],[noq],[refdate],[datea],[worker])
+	VALUES(@oldcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@oldcarno),0))as int)+1)as nvarchar(10)),3)),@eventdate,@now_date,@worker)
+
+end
+
+if(@event='suspdate')
+begin
+	--新增車輛異動紀錄
+	INSERT INTO cichange([noa],[noq],[suspdate],[datea],[worker])
+	VALUES(@oldcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@oldcarno),0))as int)+1)as nvarchar(10)),3)),@eventdate,@now_date,@worker)
+
+end
+
+if(@event='wastedate')
+begin
+	--新增車輛異動紀錄
+	INSERT INTO cichange([noa],[noq],[wastedate],[datea],[worker])
+	VALUES(@oldcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@oldcarno),0))as int)+1)as nvarchar(10)),3)),@eventdate,@now_date,@worker)
+
+end
+
+if(@event='enddate')
+begin
+	--新增車輛異動紀錄
+	INSERT INTO cichange([noa],[noq],[enddate],[datea],[worker])
+	VALUES(@oldcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@oldcarno),0))as int)+1)as nvarchar(10)),3)),@eventdate,@now_date,@worker)
+
+end
+-------------------------------------------------------------------------;
