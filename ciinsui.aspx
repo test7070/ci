@@ -137,7 +137,7 @@
 				 		if(compchange&&cicomp[0]!=undefined){
 					 		for(var i = 0; i < q_bbsCount; i++) {
 								if(!emp($('#txtInsutype_'+i).val())&&cicomp[0]!=undefined){
-									if($('#txtInsutype_'+i).val().substr(0,2)=='強制'){
+									if($('#txtInsutype_'+i).val().substr(0,3)=='強制險'){
 										q_tr('txtDiscount_'+i,dec(cicomp[0].forcediscount));
 										q_tr('txtIncome_'+i,dec($('#txtDiscount_'+i).val()));
 									}else{
@@ -239,7 +239,7 @@
 							q_bodyId($(this).attr('id'));
 							b_seq = t_IdSeq;
 							if(!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
-								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
+								if($('#txtInsutype_'+b_seq).val().substr(0,3)=='強制險')
 									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
 									q_tr('txtIncome_'+b_seq,Math.round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100));
@@ -251,7 +251,7 @@
 							q_bodyId($(this).attr('id'));
 							b_seq = t_IdSeq;
 							if(!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
-								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
+								if($('#txtInsutype_'+b_seq).val().substr(0,3)=='強制險')
 									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
 									q_tr('txtIncome_'+b_seq,Math.round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100));
@@ -264,7 +264,7 @@
 							q_bodyId($(this).attr('id'));
 							b_seq = t_IdSeq;
 							if(!emp($('#txtInsutype_'+b_seq).val())&&cicomp!=undefined){
-								if($('#txtInsutype_'+b_seq).val().substr(0,2)=='強制')
+								if($('#txtInsutype_'+b_seq).val().substr(0,3)=='強制險')
 									q_tr('txtIncome_'+b_seq,dec($('#txtDiscount_'+b_seq).val()));
 								else
 									q_tr('txtIncome_'+b_seq,Math.round(dec($('#txtCost_'+b_seq).val())*dec($('#txtDiscount_'+b_seq).val())/100));
