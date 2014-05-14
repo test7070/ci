@@ -72,7 +72,7 @@
 		        q_gt('cicarkind','', 0, 0, 0, "", r_accy+'_'+r_cno);
 		        
 		        $('#txtBdate').val(q_date());
-				$('#txtEdate').val(('0'+(dec(q_date().substr(0,3))+1)).substr(-3)+q_date().substr(3,6));
+				$('#txtEdate').val(('0'+(dec(q_date().substr(0,3))+1)).slice(-3)+q_date().substr(3,6));
 		        $('#txtMon').val(12);
 		        
 		        fbbm = q_getField('tbbm');
