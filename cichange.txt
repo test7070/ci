@@ -30,6 +30,11 @@ begin
 		update cichange
 		set noa=@nowcarno
 		where noa=@oldcarno
+		
+		--更動 還有再保的保單 107/01/03
+		update ciinsui 
+		set carno=@nowcarno
+		where carno=@oldcarno and @now_date between bdate and edate
 	
 		INSERT INTO cichange([noa],[noq],[oldnoa],[datea],[worker])
 		VALUES(@nowcarno,(select right('000'+cast((cast((isnull((select MAX(noq) from cichange where noa=@nowcarno),0))as int)+1)as nvarchar(10)),3)),@oldcarno,@now_date,@worker)
