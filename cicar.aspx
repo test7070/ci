@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 	<head>
-		<title></title>
+		<title> </title>
 		<script src="../script/jquery.min.js" type="text/javascript"></script>
 		<script src='../script/qj2.js' type="text/javascript"></script>
 		<script src='qset.js' type="text/javascript"></script>
@@ -96,7 +96,7 @@
 					//先檢查是否有重複車牌
 					if(!emp($('#txtChangecarno').val())&&q_cur==2){
                 		var t_where = "where=^^ a.noa ='"+$('#txtChangecarno').val()+"' ^^";
-						q_gt('cicar', t_where, 0, 0, 0, "");
+						q_gt('cicar', t_where, 0, 0, 0, "changecarno");
 					}
 				});
             }
@@ -159,8 +159,8 @@
                         if(abbm[q_recno])
                         	$("#cmbCardealno").val(abbm[q_recno].cardealno);
                 		break;*/
-                    case q_name:
-                    	if(q_cur==2){
+                	case 'changecarno':
+                		if(q_cur==2){
                     		var as = _q_appendData("cicar", "", true);
                     		if(as[0]==undefined){
 	                    		if(!emp($('#txtChangecarno').val())){
@@ -171,7 +171,8 @@
 	                    		alert('車牌重覆!!');
 	                    	}
                     	}
-                    	
+                    	break;
+                    case q_name:
                         if (q_cur == 4)
                             q_Seek_gtPost();
                         break;
